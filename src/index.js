@@ -117,12 +117,14 @@ class Game extends React.Component {
     let status = winner ? "Winner is " + winner + "!" : "Next player: " + this.state.turn;
 
     const moves = history.map((step, move, loc) => {
-      const desc = move ?
+      let desc = move ?
         'Go to move #' + move + ' ' + step.location:
         'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)}
+            style={{fontWeight: move === this.state.stepNumber ? 'bold' : 'normal'}}
+          >{desc}</button>
         </li>
       )
     });
